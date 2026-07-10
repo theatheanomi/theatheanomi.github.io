@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="e-ial-scale=1.0">
+<title >Boite à outils</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<nav>
+    
+    
+    <a href="index.html"class=theaplus>HOME</a>
+  
+</nav>
+<section class= "bao">
+    <div class="section-label">outils</div>
+    <h2 class="section-title reveal"> Présentation </h2>
+    <div class="project-vertical reveal">
+        <p>
+            Les meilleurs outils du marché &#x1F601;
+        </p>    
+    </div>
+    <div class="gallery-grid">
+        <div class="g-item g-item-krita">
+            <h3 class="krita-title"> <a href="https://krita.org/fr/">krita</a> </h3>
+        </div>
+
+        <div class="g-item g-item-krita">
+            <h3 class="krita-title"> <a href="https://www.blender.org/">blender</a> </h3>
+            
+        </div>
+        <div class="g-item g-item-krita">
+            <h3 class="krita-title"> <a href="https://www.gimp.org/">GIMP</a> </h3>
+        </div>
+        <div class="g-item g-item-krita">
+            <h3 class="krita-title"> <a href="https://www.blackmagicdesign.com/fr/products/davinciresolve">Da Vinci Resolve</a> </h3>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- SCRIPT -->
+<script src="main.js"></script>
+
+<script type="importmap">
+{
+  "imports": {
+    "animejs": "https://esm.sh/animejs@4"
+  }
+}
+</script>
+<!--
+<script type="module">
+  import { createAnimatable, utils } from 'animejs';
+
+  const sigil = document.querySelector('.sigil2');
+
+  if (sigil) {
+    const animatableSigil = createAnimatable(sigil, {
+      x: 400,
+      y: 400,
+      ease: 'out(3)',
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      const maxOffset = 25; // déplacement max en pixels
+
+      const x = utils.clamp((e.clientX - cx) / cx * maxOffset, -maxOffset, maxOffset);
+      const y = utils.clamp((e.clientY - cy) / cy * maxOffset, -maxOffset, maxOffset);
+
+      animatableSigil.x(x);
+      animatableSigil.y(y);
+    });
+  }
+</script>
+
+<script type=module>
+import { createTimeline, splitText, stagger, utils } from 'animejs';
+
+const [ $button ] = utils.$('button');
+const split = splitText('.krita-title', { debug: true });
+const $accessible = split.$target.firstChild;
+
+$accessible.style.cssText = `
+  opacity: 0;
+  position: absolute;
+  color: var(--hex-green-1);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  outline: currentColor dotted 0px;
+`;
+
+const showAccessibleClone = createTimeline({
+  defaults: { ease: 'inOutQuad' },
+})
+.add($accessible, {
+  opacity: 0.4,
+  z: '-2rem',
+}, 0)
+.add('.krita-title', {
+  rotateX: 15,
+  rotateY: 10
+}, 0)
+.add(split.words, {
+  z: '6rem',
+  opacity: 1,
+  outlineColor: { from: 'rgba(245,169,184,.7)' },
+  duration: 1500,
+  delay: stagger(40, { from: 'random' })
+}, 0)
+.init();
+const toggleAccessibleClone = () => {
+  showAccessibleClone.alternate().resume();
+} 
+$button.addEventListener('click', toggleAccessibleClone);
+</script>
+-->
+
+<footer> THEA - Portfolio </footer>
+</body>
+</html>
