@@ -9,7 +9,34 @@
      - Pour la vidéo ÔTA PRODUCTION : remplace l'iframe
        YouTube par ton propre lien une fois uploadée.
      ============================================ */
-  #lightbox{
+ #lightbox-img.plein-ecran,
+#lightbox-video.plein-ecran{
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+    background: #000;
+    z-index: 10000;
+    cursor: zoom-out;
+    animation: plein-ecran-pop 0.35s ease forwards;
+}
+
+@keyframes plein-ecran-pop{
+    from{
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+     #lightbox{
     position:fixed;
     inset:0;
     background:rgba(0,0,0,.9);
@@ -17,17 +44,101 @@
     justify-content:center;
     align-items:center;
     z-index:9999;
+    padding: 2rem;
 }
 
-#lightbox img{
-    max-width:90%;
-    max-height:90%;
-    border-radius:8px;
+#lightbox.actif{
+    display:flex;
 }
+
+#lightbox-content{
+    display:flex;
+    max-width: 1000px;
+    width:100%;
+    max-height: 85vh;
+    background:
+      radial-gradient(ellipse 600px 500px at 20% 10%, rgba(91,206,250,0.18), transparent 60%),
+      radial-gradient(ellipse 600px 500px at 85% 90%, rgba(245,169,184,0.16), transparent 60%),
+      var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow:hidden;
+}
+#lightbox img,
+#lightbox video{
+    flex: 1 1 60%;
+    min-width: 0;
+    max-width:100%;
+    max-height: 85vh;
+    object-fit: contain;
+    opacity: 0;
+    animation: img-pop 0.4s ease forwards;
+}
+
+@keyframes img-pop{
+    from{
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#lightbox-desc{
+    flex: 0 0 40%;
+    max-width: 40%;
+    padding: 2rem;
+    overflow-y:auto;
+    opacity: 0;
+    transform: translateX(30px);
+    animation: desc-glisse 0.45s ease forwards;
+    animation-delay: 0.35s;
+}
+
+@keyframes desc-glisse{
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+#lightbox-desc h3{
+    color: var(--trans-blue);
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+#lightbox-desc p{
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+#lightbox-desc:empty{ display:none; }
 
 .zoomable{
     cursor:pointer;
 }
+
+@media (max-width: 700px){
+    #lightbox-content{
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    #lightbox img{ max-height: 45vh; }
+    #lightbox-desc{
+        transform: translateY(20px);
+    }
+    @keyframes desc-glisse{
+        to{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
   :root {
     --bg: #13141f;
     --bg-soft: #1a1c2b;
